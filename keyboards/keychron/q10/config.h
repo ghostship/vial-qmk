@@ -37,13 +37,6 @@
 #define DRIVER_ADDR_1 0b1110111
 #define DRIVER_ADDR_2 0b1110100
 
-/* Increase I2C speed to 1000 KHz */
-#define I2C1_TIMINGR_PRESC 0U
-#define I2C1_TIMINGR_SCLDEL 3U
-#define I2C1_TIMINGR_SDADEL 0U
-#define I2C1_TIMINGR_SCLH 15U
-#define I2C1_TIMINGR_SCLL 51U
-
 /* Scan phase of led driver set as MSKPHASE_9CHANNEL(defined as 0x03 in CKLED2001.h) */
 #define PHASE_CHANNEL MSKPHASE_9CHANNEL
 #define CKLED2001_CURRENT_TUNE \
@@ -51,6 +44,7 @@
 
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID  { {5,5} }
+#define SCAN_COUNT_MAX 100
 
 /* Disable DIP switch in matrix data */
 #define MATRIX_MASKED
@@ -62,7 +56,7 @@
 #define WEAR_LEVELING_LOGICAL_SIZE 2048
 #define WEAR_LEVELING_BACKING_SIZE (WEAR_LEVELING_LOGICAL_SIZE * 2)
 
-/* Specify (0,1) which programmed as "ESC" key on this keyboard as bootmagic key */
+/* Specify (0,1) which is "ESC" key on this keyboard as bootmagic key */
 #define BOOTMAGIC_LITE_ROW 0
 #define BOOTMAGIC_LITE_COLUMN 1
 
@@ -117,3 +111,6 @@
 
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
+
+/* Enable receive custom command from host */
+#define RAW_HID_CMD 0xAB

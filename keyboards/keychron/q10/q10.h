@@ -18,8 +18,8 @@
 
 #include "quantum.h"
 
-#if   defined(KEYBOARD_keychron_q10_ansi_encoder)
-#    include "ansi_encoder.h"
-#elif defined(KEYBOARD_keychron_q10_iso_encoder)
-#    include "iso_encoder.h"
+#if   defined(KEYBOARD_keychron_q10_q10_ansi_stm32l432_ec11)
+#    include "q10_ansi_stm32l432_ec11.h"
+#elif defined(KEYBOARD_keychron_q10_q10_iso_stm32l432_ec11)
+#    include "q10_iso_stm32l432_ec11.h"
 #endif

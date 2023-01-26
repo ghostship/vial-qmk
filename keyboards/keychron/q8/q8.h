@@ -18,12 +18,12 @@
 
 #include "quantum.h"
 
-#if   defined(KEYBOARD_keychron_q8_ansi)
-#    include "ansi.h"
-#elif defined(KEYBOARD_keychron_q8_ansi_encoder)
-#    include "ansi_encoder.h"
-#elif defined(KEYBOARD_keychron_q8_iso)
-#    include "iso.h"
-#elif defined(KEYBOARD_keychron_q8_iso_encoder)
-#    include "iso_encoder.h"
+#if   defined(KEYBOARD_keychron_q8_q8_ansi_stm32l432)
+#    include "q8_ansi_stm32l432.h"
+#elif defined(KEYBOARD_keychron_q8_q8_ansi_stm32l432_ec11)
+#    include "q8_ansi_stm32l432_ec11.h"
+#elif defined(KEYBOARD_keychron_q8_q8_iso_stm32l432)
+#    include "q8_iso_stm32l432.h"
+#elif defined(KEYBOARD_keychron_q8_q8_iso_stm32l432_ec11)
+#    include "q8_iso_stm32l432_ec11.h"
 #endif

@@ -33,44 +33,34 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
     return true;
 }
 
-#endif // DIP_SWITCH_ENABLE
+#endif
 
 #if defined(RGB_MATRIX_ENABLE) && defined(CAPS_LOCK_LED_INDEX)
 
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_user(keycode, record)) { return false; }
-    switch (keycode) {
-#ifdef RGB_MATRIX_ENABLE
-        case RGB_TOG:
-            if (record->event.pressed) {
-                switch (rgb_matrix_get_flags()) {
-                    case LED_FLAG_ALL: {
-                        rgb_matrix_set_flags(LED_FLAG_NONE);
-                        rgb_matrix_set_color_all(0, 0, 0);
-                    } break;
-                    default: {
-                        rgb_matrix_set_flags(LED_FLAG_ALL);
-                    } break;
-                }
-            }
-            if (!rgb_matrix_is_enabled()) {
-                rgb_matrix_set_flags(LED_FLAG_ALL);
-                rgb_matrix_enable();
-            }
-            return false;
+#define CAPS_LOCK_MAX_BRIGHTNESS 0xFF
+#ifdef RGB_MATRIX_MAXIMUM_BRIGHTNESS
+    #undef CAPS_LOCK_MAX_BRIGHTNESS
+    #define CAPS_LOCK_MAX_BRIGHTNESS RGB_MATRIX_MAXIMUM_BRIGHTNESS
 #endif
-    }
-    return true;
-}
 
-void rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
+#define CAPS_LOCK_VAL_STEP 8
+#ifdef RGB_MATRIX_VAL_STEP
+    #undef CAPS_LOCK_VAL_STEP
+    #define CAPS_LOCK_VAL_STEP RGB_MATRIX_VAL_STEP
+#endif
+
+void rgb_matrix_indicators_kb(void) {
     if (host_keyboard_led_state().caps_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 255, 255, 255);
-    } else {
-        if (!rgb_matrix_get_flags()) {
-           RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 0, 0, 0);
+        uint8_t b = rgb_matrix_get_val();
+        if (b < CAPS_LOCK_VAL_STEP) {
+            b = CAPS_LOCK_VAL_STEP;
+        } else if (b < (CAPS_LOCK_MAX_BRIGHTNESS - CAPS_LOCK_VAL_STEP)) {
+            b += CAPS_LOCK_VAL_STEP;  // one step more than current brightness
+        } else {
+            b = CAPS_LOCK_MAX_BRIGHTNESS;
         }
+        rgb_matrix_set_color(CAPS_LOCK_LED_INDEX, b, b, b);  // white, with the adjusted brightness
     }
 }
 
-#endif // CAPS_LOCK_LED_INDEX
+#endif

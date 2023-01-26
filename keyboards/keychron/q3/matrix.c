@@ -76,8 +76,9 @@ static void shiftOut(uint8_t dataOut) {
     setPinOutput_writeLow(LATCH_PIN);
 }
 
-static void shiftout_single(uint8_t data) {
-    if (data & 0x1) {
+static void shiftOut_single(uint8_t dataOut) {
+    if (dataOut & 0x1) {
+
         setPinOutput_writeHigh(DATA_PIN);
     } else {
         setPinOutput_writeLow(DATA_PIN);

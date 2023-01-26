@@ -1,4 +1,4 @@
-/* Copyright 2022 @ Keychron(https://www.keychron.com)
+/* Copyright 2021 @ Keychron(https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
 
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID  { {5, 4} }
+#define SCAN_COUNT_MAX 100
 
 /* Disable DIP switch in matrix data */
 #define MATRIX_MASKED
@@ -98,3 +99,6 @@
 
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
+
+/* Enable receive custom command from host */
+#define RAW_HID_CMD 0xAB

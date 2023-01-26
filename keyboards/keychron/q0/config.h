@@ -46,6 +46,8 @@
 /* turn off effects when suspended */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 
+#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+
 /* EEPROM Driver Configuration */
 #define WEAR_LEVELING_LOGICAL_SIZE 2048
 #define WEAR_LEVELING_BACKING_SIZE (WEAR_LEVELING_LOGICAL_SIZE * 2)
@@ -99,3 +101,6 @@
 #define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 // #define RGB_MATRIX_KEYPRESSES
+
+/* Enable receive custom command from host */
+#define RAW_HID_CMD 0xAB
